@@ -10,6 +10,12 @@
 
 zustand는 타입스크립트여서 별도의 타입을 설치할 필요가 없다.
 
+## 참고 문서
+
+- [공식문서](https://github.com/pmndrs/zustand)
+- [공식문서 번역](https://www.rldnrl.dev/blog/zustand)
+- [zustand 최적화](https://velog.io/@313yang/Zustand-현명하게-쓰기-zustand-최적화)
+
 ## 주의사항
 
 ### 디스트럭쳐링 할당은 불필요한 리렌더링을 발생시킨다
