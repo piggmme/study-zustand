@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { usePeople } from "../store/usePeople";
-import AddPerson from "./Derived/AddPerson";
+import { usePeople } from "../../store/usePeople";
+import AddPerson from "./AddPerson";
 
 export default function Derived2() {
   const people = usePeople((state) => state.people);

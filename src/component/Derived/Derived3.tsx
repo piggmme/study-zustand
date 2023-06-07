@@ -10,8 +10,13 @@ type People = {
     count: number;
   };
   actions: {
+    something: any;
+    foo: {
+      bar: any;
+    };
     addPerson: (person: string) => void;
     removePerson: (person: string) => void;
+    doNothing: () => void;
   };
 };
 
@@ -32,21 +37,38 @@ const usePeople = create(
         },
       },
       actions: {
-        addPerson: (person: string) =>
-          set((state) => ({ people: [...state.people, person] })),
-        removePerson: (person: string) =>
+        get something() {
+          console.log("something is happend");
+          return true;
+        },
+        foo: {
+          get bar() {
+            console.log("foo.bar is happend");
+            return true;
+          },
+        },
+        addPerson: (person: string) => {
+          set((state) => ({ people: [...state.people, person] }));
+          console.log(`사람 ${person} 추가`);
+        },
+        removePerson: (person: string) => {
           set((state) => ({
             people: state.people.filter((p) => p !== person),
-          })),
+          }));
+          console.log(`사람 ${person} 제거`);
+        },
+        doNothing: () => {
+          console.log("do nothing");
+        },
       },
     }))
   )
 );
 
-export default function Derived() {
+export default function Derived3() {
   const [state, setState] = useState(1);
 
-  const { addPerson } = usePeople((state) => state.actions);
+  const { addPerson, removePerson } = usePeople((state) => state.actions);
   const people = usePeople((state) => state.people);
   const count = usePeople((state) => state.count); // 계속 2가 나옴
   const derivedCount = usePeople((state) => state.derived.count); // add person 하면 증가함
@@ -61,6 +83,14 @@ export default function Derived() {
         }}
       >
         add person
+      </button>
+      <button
+        onClick={() => {
+          if (people.at(-1)) removePerson(people.at(-1)!);
+          setState(state - 1);
+        }}
+      >
+        remove person
       </button>
 
       <p>People: {people.join(", ")}</p>
