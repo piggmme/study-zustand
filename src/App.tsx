@@ -9,8 +9,8 @@ import Lush from "./component/Lush";
 function App() {
   return (
     <div>
-      {/* <Derived /> */}
-      <Derived2 />
+      <Derived />
+      {/* <Derived2 /> */}
       {/* <Bear />
       <Foods />
       <Lush /> 

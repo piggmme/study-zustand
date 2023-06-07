@@ -21,11 +21,13 @@ const usePeople = create(
       people: ["해인", "하니"],
       get count() {
         if (!get()?.people) return 0;
+        console.log("count > ", get()?.people);
         return get().people.length;
       },
       derived: {
         get count() {
           if (!get()?.people) return 0;
+          console.log("derived.count > ", get()?.people);
           return get().people.length;
         },
       },
